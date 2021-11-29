@@ -16,6 +16,10 @@ npm i style-loader css-loader sass-loader -D
 npm i file-loader -D 
 yarn add babel-loader -D 
 npm i babel-loader -D
+npm i cross-env --save-dev
 ```
+
+**BUILD**
+`npm run build`
 
 Note: the `-D` option is used to declare that these dependencies are only used in the development environment and will not be sent to the production environment.
