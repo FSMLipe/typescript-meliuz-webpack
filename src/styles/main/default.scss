@@ -1,0 +1,28 @@
+@import "../variables/tokens.scss";
+
+*{
+    padding: 0;
+    margin: 0;
+//    background-color: $bgRed; // $ is a variable calling
+}
+
+body{
+    background: $bgRed;
+}
+
+.card{
+    max-width: 380px;
+    background-color: $bgWhite;
+    padding: $p10;
+    border-radius: $p10;
+    
+    img{
+        width: 70%;
+        height: auto;
+        margin: 0 auto;
+    }
+    p{
+        text-align: center;
+        font-family: $fontDefault;
+    }
+}

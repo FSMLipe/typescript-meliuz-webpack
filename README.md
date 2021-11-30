@@ -19,7 +19,14 @@ npm i babel-loader -D
 npm i cross-env --save-dev
 ```
 
+**TODO**
+- [ ] Fix identation on commands for initialization
+- [ ] Document patterns and steps made for the initialization of the project
+- [ ] Explain benefits and process
+
 **BUILD**
-`npm run build`
+```
+npm run build
+```
 
 Note: the `-D` option is used to declare that these dependencies are only used in the development environment and will not be sent to the production environment.
