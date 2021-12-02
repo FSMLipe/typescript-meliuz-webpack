@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import Card from './components/Card';
 
 const App: React.FC = () => {
@@ -19,4 +19,4 @@ const App: React.FC = () => {
     )
 }
 
-export default App
+export default App*/
