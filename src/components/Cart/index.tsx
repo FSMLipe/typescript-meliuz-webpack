@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 import {
     Button,
     Badge,
-    SwipeableDrawer
+    SwipeableDrawer,
+    Container
 } from '@mui/material';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 
@@ -31,13 +32,15 @@ const Cart: React.FC = () => {
                 onClose={handleCart}
                 onOpen={handleCart}
             >
-                {state?.map( (item, index) => (
-                    <div key={index}>
-                        <h4>{item.name}</h4>
-                        <img src={item.image} alt={item.name} />
-                        <h3>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(item.price)}</h3>
-                    </div>
-                ))}
+                <Container>
+                    {state?.map( (item, index) => (
+                        <div key={index}>
+                            <h4>{item.name}</h4>
+                            <img src={item.image} alt={item.name} />
+                            <h3>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(item.price)}</h3>
+                        </div>
+                    ))}
+                </Container>
             </SwipeableDrawer>
         </>
     )
