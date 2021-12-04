@@ -1,5 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
+import {
+    Grid,
+    Container
+} from '@mui/material';
+
+import LoaderComponent from '@/components/Loader';
+import CardComponent from '@/components/Card';
 
 import api from '@/services/api';
 import { addNewProduct } from '@/store/modules/cart/actions'
@@ -8,34 +18,64 @@ import { IProduct } from '@/types'
 
 const Home: React.FC = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [list, setList] = useState<IProduct[]>([]);
+    const [isLoad, setIsLoad] = useState(false);
 
     useEffect( () => {
+        setIsLoad(true);
         api.get('products').then(
             res => setList(res.data)
-        ).catch( e => console.error(e) )
+        )
+        .catch( e => console.error(e) )
+        .finally( () => {
+            setTimeout( () => {
+                setIsLoad(false)
+            }, 1500)
+        })
     }, [])
 
     const handleAddCart = (item: IProduct) => {
         dispatch(addNewProduct(item));
+        toast.success('Produto adicionado ao carrinho com sucesso!')
+    }
+
+    const handleDetailsProduct = (item: number) => {
+        navigate(`/produtos/${item}`)
+    }
+
+    if (isLoad) {
+        return <LoaderComponent show={isLoad} />
     }
 
     return(
-        <div>
+        <Container>
             <h1>Home</h1>
+            <Grid
+                container
+                columns={{ xs: 6, md: 12 }}
+                spacing={1}
+                style={{ paddingTop: 40, paddingBottom: 40 }}
+                justifyContent="center"
+                alignItems="center"
+            >
             {
                 list?.map( item => (
-                    <div key={item.id}>
-                        <img src={item.image} />
-                        <h2>{item.name}</h2>
-                        <p>{item.description}</p>
-                        <h3>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL'}).format(item.price)}</h3>
-                        <button onClick={ () => handleAddCart(item) }>Adicionar ao carrinho</button>
-                    </div>
-                ))
-            }
-        </div>
+                    <CardComponent 
+                        key={item.id}
+                        textTitle={item.name}
+                        img={item.image}
+                        altText={item.name}
+                        descriptionText={item.description}
+                        priceText={item.price}
+                        handleAction={handleAddCart}
+                        itemDefault={item}
+                        handleDetails={handleDetailsProduct}
+                    />
+                )) }
+            </Grid>
+        </Container>
     )
 }
 

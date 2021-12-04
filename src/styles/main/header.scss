@@ -1,9 +1,13 @@
+@import "../variables/tokens.scss";
+
 .logo{
     height: 100px;
     width: auto;
 }
 
 .nav-container{
-    background-color: sandybrown;
+    background-color: $bgBackgroundBrown;
     padding: 22px 0;
+    width: 100vw;
+    margin: 0;
 }

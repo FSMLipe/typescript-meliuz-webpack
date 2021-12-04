@@ -23,3 +23,21 @@
         font-family: $fontDefault;
     }
 }
+
+.newsletter-content{
+    background-color: $bgLigthGray;
+    text-align: center;
+    color: $bgPurple;
+    padding: $p40;
+
+    form{
+        margin-top: $p40;
+    }
+}
+
+footer{
+    background-color: $bgBackgroundBrown;
+    color: $colorDefault;
+    text-align: center;
+    padding: 40px 0;
+}
