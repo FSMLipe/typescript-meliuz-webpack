@@ -7,6 +7,7 @@ import {
 } from '@mui/material'
 
 import api from '@/services/api';
+import { getDiscountPrice } from '@/utils';
 
 import { IProduct } from '@/types';
 
@@ -55,7 +56,9 @@ const ProductDetails: React.FC = () => {
                     </Grid>
                     <Grid item xs>
                         <p>{item.description}</p>
+                        //adicionar uma tratatíva de preço com e sem desconto
                         <h3>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(item.price)}</h3>
+                        <h3>{getDiscountPrice(item.discount, item.price)}</h3>
                         { item.discount > 0 && (<h5>Com {item.discount}% de desconto</h5>) }
                     </Grid>
                 </Grid>
